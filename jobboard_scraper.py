@@ -26,13 +26,13 @@ async def org_subflow(org: dict) -> str:
   return process_org(org)
 
 @task(log_prints=True)
-def costly_preprocessing():
+async def costly_preprocessing():
     print("Starting costly pre-processing step...")
     time.sleep(5)  # Simulate a costly operation
     print("Costly pre-processing completed.")
 
 @task(log_prints=True)
-def costly_postprocessing(results: dict):
+async def costly_postprocessing(results: dict):
     print("Starting costly post-processing step...")
     time.sleep(5)  # Simulate a costly operation
     print("Costly post-processing completed.")
