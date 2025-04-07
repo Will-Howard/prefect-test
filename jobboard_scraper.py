@@ -18,7 +18,7 @@ import random
 async def org_subflow(org: dict) -> str:
   if random.random() < 0.1:  # 10% chance
     print(f"Pausing for approval for: {org['name']}")
-    await suspend_flow_run(
+    await pause_flow_run(
       key=f"Approve processing for {org['name']}",
       timeout=60 * 60 * 24  # optional: 24hr timeout
     )
