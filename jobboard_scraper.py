@@ -47,13 +47,6 @@ def top_flow():
     results[org["name"]] = org_subflow(org)
   print("\n✅ All orgs processed:", results)
 
-if __name__ == "__main__":
-  # Only registers the flow for manual triggering
-  top_flow.deploy(
-    name="jobboard-scraper",
-    work_pool_name="my-work-pool"
-  )
-
 @flow
 def hello(name: str = "Marvin"):
   print(f"Hello {name}!")
