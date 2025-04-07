@@ -16,7 +16,6 @@ def process_org(org: dict) -> str:
 def org_subflow(org: dict) -> str:
   print(f"Pausing for approval for: {org['name']}")
   pause_flow_run(
-    wait_for_input=String(value="Type anything to resume."),
     key=f"Approve processing for {org['name']}",
     timeout=60 * 60 * 24  # optional: 24hr timeout
   )
