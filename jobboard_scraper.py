@@ -2,6 +2,8 @@ import time
 from prefect import flow, task, pause_flow_run
 from prefect.blocks.system import String
 
+this_source = 'https://github.com/Will-Howard/prefect-test.git'
+
 # @task(log_prints=True)
 # def wait_for_approval(org: dict):
 #   print(f"Pausing for approval for: {org['name']}")
@@ -56,10 +58,16 @@ from prefect import flow
 
 @flow
 def hello(name: str = "Marvin"):
-    print(f"Hello {name}!")
+  print(f"Hello {name}!")
 
 if __name__ == "__main__":
-    hello.deploy(
-        name="my-hello-deployment",
-        work_pool_name="my-work-pool"
+  flow.from_source(
+        source=this_source,
+        entrypoint="jobboard_scraper.py:hello", # Specific flow to run
+    ).deploy(
+        name="my-first-deployment",
+        parameters={
+            "name": "Steven"
+        },
+        work_pool_name="my-work-pool",
     )
