@@ -9,8 +9,8 @@ def wait_for_approval(org: dict):
   print(f"Pausing for approval for: {org['name']}")
   pause_flow_run(
     wait_for_input=String(value="Type anything to resume."),
-    name=f"Approve processing for {org['name']}",
-    timeout_seconds=60 * 60 * 24  # optional: 24hr timeout
+    key=f"Approve processing for {org['name']}",
+    timeout=60 * 60 * 24  # optional: 24hr timeout
   )
   print(f"Approval received for {org['name']} — continuing.")
 
