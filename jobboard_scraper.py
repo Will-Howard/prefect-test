@@ -16,7 +16,7 @@ def process_org(org: dict) -> str:
 @flow(name="Org Subflow", log_prints=True)
 async def org_subflow(org: dict) -> str:
   print(f"Pausing for approval for: {org['name']}")
-  pause_flow_run(
+  await pause_flow_run(
     key=f"Approve processing for {org['name']}",
     timeout=60 * 60 * 24  # optional: 24hr timeout
   )
